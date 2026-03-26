@@ -1,3 +1,5 @@
+require('dotenv').config();
+// ... el resto de tu código (require de server, handlers, etc.)
 // Primary file for the API
 // Dependencies
 var server = require('./lib/server');

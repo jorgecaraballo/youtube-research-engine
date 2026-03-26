@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{global.head.title}</title>
+    <link rel="stylesheet" href="/public/videos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{global.body.title}</h1>
+        
+        <!-- Panel de control -->
+        <div class="control-panel">
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span class="stat-label">Total videos:</span>
+                    <span class="stat-value" id="totalVideos">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Última actualización:</span>
+                    <span class="stat-value" id="ultimaActualizacion">-</span>
+                </div>
+            </div>
+            
+            <div class="action-panel">
+                <button class="success" onclick="actualizarVideos()" id="btnActualizar">
+                    🔄 Actualizar desde YouTube
+                </button>
+                <button onclick="recargarVideos()" id="btnRecargar">
+                    🔍 Recargar lista
+                </button>
+            </div>
+            
+            <!-- Buscador -->
+            <div class="search-panel">
+                <input type="text" id="searchInput" placeholder="Buscar videos por título..." class="search-input">
+                <button onclick="buscarVideos()" class="search-button">🔍 Buscar</button>
+                <button onclick="limpiarBusqueda()" class="clear-button" id="clearSearchBtn" style="display: none;">✕ Limpiar</button>
+            </div>
+        </div>
+        
+        <!-- Mensajes -->
+        <div id="messageBox" class="message"></div>
+        
+        <!-- Controles de paginación -->
+        <div class="pagination-controls">
+            <div class="pagination-info">
+                <span id="paginacionInfo">Mostrando 1-20 de <span id="totalResultados">0</span> videos</span>
+            </div>
+            <div class="pagination-buttons">
+                <button onclick="cambiarPagina('primera')" id="btnPrimera" disabled>⏮️ Primera</button>
+                <button onclick="cambiarPagina('anterior')" id="btnAnterior" disabled>◀ Anterior</button>
+                <span class="pagination-current" id="paginaActual">Página 1</span>
+                <button onclick="cambiarPagina('siguiente')" id="btnSiguiente" disabled>Siguiente ▶</button>
+                <button onclick="cambiarPagina('ultima')" id="btnUltima" disabled>Última ⏭️</button>
+            </div>
+            <div class="pagination-items">
+                <label for="itemsPorPagina">Videos por página:</label>
+                <select id="itemsPorPagina" onchange="cambiarItemsPorPagina()">
+                    <option value="12">12</option>
+                    <option value="20" selected>20</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Grid de videos -->
+        <div class="videos-grid" id="videosGrid">
+            <div class="loading">Cargando videos...</div>
+        </div>
+        
+        <!-- Paginación inferior (duplicada para mejor UX) -->
+        <div class="pagination-controls bottom">
+            <div class="pagination-buttons">
+                <button onclick="cambiarPagina('primera')" id="btnPrimeraBottom" disabled>⏮️ Primera</button>
+                <button onclick="cambiarPagina('anterior')" id="btnAnteriorBottom" disabled>◀ Anterior</button>
+                <span class="pagination-current" id="paginaActualBottom">Página 1</span>
+                <button onclick="cambiarPagina('siguiente')" id="btnSiguienteBottom" disabled>Siguiente ▶</button>
+                <button onclick="cambiarPagina('ultima')" id="btnUltimaBottom" disabled>Última ⏭️</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/videos.js"></script>
+</body>
+</html>

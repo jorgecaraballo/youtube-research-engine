@@ -1,0 +1,74 @@
+<div class="marco">
+    <h3>Configuración de preferencias</h3>
+    <div class="checkbox-container">
+        <div class="checkbox-group">
+            <input type="checkbox" id="light" name="light">
+            <label for="light">Alarma</label>
+        </div>
+    </div>
+</div>
+
+<div class="marco">
+	<boton-component>Automático</boton-component>
+	<slide-panel>
+	    <div class="checkbox-container">
+		<div class="checkbox-group">
+		    <input type="checkbox" id="activado-automatico" name="activado-automatico">
+		    <label for="activado-automatico">Activado automático</label>
+		</div>
+	    </div>
+	</slide-panel>
+</div>
+
+<script src="socket.io.min.js"></script>
+<script src="public/modal.js"></script>
+<script src="public/boton-component.js"></script>
+<script src="public/slide-panel.js"></script>
+<script type="text/javascript" >
+'use strict';
+/* Chat */
+function entradasOscuras(elemento) {
+	elemento.style.background = '#2f4050';
+	elemento.style.color = 'white';
+	elemento.addEventListener('focus', function() {
+		this.style.background = '#333';
+		this.style.color = 'cyan';
+		});
+	elemento.addEventListener('blur', function() {
+		this.style.background = '#2f4050';
+		});
+	}
+/* Fin Chat */
+var socket = io(); //load socket.io-client and connect to the host that serves the page
+// include socket.io client side script
+window.addEventListener("load", function() { //when page loads
+	let lightbox = document.getElementById("light");
+	lightbox.addEventListener("change", function() { //add event listener for when checkbox changes
+		socket.emit("light", Number(this.checked)); //send button status to server (as 1 or 0)
+		});
+	let automatico = document.getElementById("activado-automatico");
+	automatico.addEventListener("change", function() { //add event listener for when checkbox changes
+		socket.emit("automatico", Number(this.checked)); //send button status to server (as 1 or 0)
+		});
+	let slidePanel = document.querySelector('slide-panel');
+	let botonComponent = document.querySelector('boton-component');
+	botonComponent.addEventListener('click-boton-component', (e) => {
+		//console.log(slidePanel.panel.style.maxHeight);
+		if (Number(slidePanel.panel.style.maxHeight) === 0 || slidePanel.panel.style.maxHeight == '0px') {
+			slidePanel.expandir();
+			}
+		else {
+			slidePanel.ocultar();
+			}
+		});
+	});
+socket.on('light', function (data) { //get button status from client
+	document.getElementById("light").checked = data; //change checkbox according to push button on Raspberry Pi
+	//socket.emit("light", data); //send push button status to back to server
+	});
+socket.on('automatico', function (data) { //get button status from client
+	document.getElementById("activado-automatico").checked = data;
+	//socket.emit("light", data); //send push button status to back to server
+	});
+</script>
+

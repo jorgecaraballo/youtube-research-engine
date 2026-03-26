@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{global.head.title}</title>
+    <link rel="stylesheet" href="/public/tareas.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{global.body.title}</h1>
+        
+        <!-- Panel de control del servicio -->
+        <div class="service-panel">
+            <div class="service-status">
+                <span class="status-indicator" id="serviceIndicator"></span>
+                <span id="serviceStatus">Estado: Cargando...</span>
+            </div>
+            <div>
+                <button class="success" onclick="controlServicio('iniciar')">Iniciar Servicio</button>
+                <button class="danger" onclick="controlServicio('detener')">Detener Servicio</button>
+                <button onclick="actualizarEstado()">Actualizar Estado</button>
+            </div>
+            
+            <!-- Control de duración de notificaciones -->
+            <div class="notification-config">
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <label for="notifDuration" style="color: #66b0ff; font-weight: bold;">Duración notificaciones:</label>
+                    <select id="notifDuration">
+                        <option value="3000">3 segundos</option>
+                        <option value="5000" selected>5 segundos (por defecto)</option>
+                        <option value="10000">10 segundos</option>
+                        <option value="15000">15 segundos</option>
+                        <option value="30000">30 segundos</option>
+                        <option value="0">Permanente (hasta cerrar)</option>
+                    </select>
+                    
+                    <button onclick="probarNotificacion()" style="background: #51cf66; color: #1a1a1a; padding: 8px 16px;">Probar</button>
+                    <span id="notifDurationValue" style="color: #888; font-size: 0.9em;"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mensajes -->
+        <div id="messageBox" class="message"></div>
+        
+        <!-- Formulario para agregar tareas -->
+        <div class="form-container">
+            <h2>Agregar Nueva Tarea</h2>
+            <form id="tareaForm" onsubmit="return agregarTarea(event)">
+                <div class="form-group">
+                    <label for="subject">Descripción:</label>
+                    <input type="text" id="subject" required placeholder="Ej: Recordatorio de reunión">
+                </div>
+                
+                <div class="form-group">
+                    <label for="minutosInicio">Minutos hasta primera ejecución:</label>
+                    <input type="number" id="minutosInicio" min="0" value="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="minutosIntervalo">Intervalo entre repeticiones (minutos):</label>
+                    <input type="number" id="minutosIntervalo" min="1" value="5" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="repeticiones">Número de repeticiones (0 = infinitas):</label>
+                    <input type="number" id="repeticiones" min="0" value="3" required>
+                </div>
+                
+                <button type="submit">Agregar Tarea</button>
+                <button type="button" onclick="limpiarFormulario()">Limpiar</button>
+            </form>
+        </div>
+        
+        <!-- Lista de tareas -->
+        <h2>Lista de Tareas</h2>
+        <div class="table-container">
+            <table id="tablaTareas">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Min. Inicio</th>
+                        <th>Intervalo</th>
+                        <th>Repeticiones</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tareasBody">
+                    <tr>
+                        <td colspan="6" style="text-align: center;">Cargando tareas...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+<script src="socket.io.min.js"></script> 
+    <script src="/public/tareas.js"></script>
+</body>
+</html>

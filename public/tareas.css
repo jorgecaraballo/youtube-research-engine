@@ -1,0 +1,414 @@
+/* Modo oscuro - Estilos para el gestor de tareas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #66b0ff;
+}
+
+/* Formulario */
+.form-container {
+    background: #2d2d2d;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid #404040;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #66b0ff;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: #3d3d3d;
+    border: 1px solid #555;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #ffffff;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #66b0ff;
+    box-shadow: 0 0 5px rgba(102, 176, 255, 0.3);
+}
+
+input::placeholder {
+    color: #888;
+}
+
+button {
+    background: #66b0ff;
+    color: #1a1a1a;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.1s;
+    margin-right: 10px;
+}
+
+button:hover {
+    background: #7abfff;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+button.danger {
+    background: #ff6b6b;
+    color: #1a1a1a;
+}
+
+button.danger:hover {
+    background: #ff8585;
+}
+
+button.success {
+    background: #51cf66;
+    color: #1a1a1a;
+}
+
+button.success:hover {
+    background: #69db7e;
+}
+
+/* ============================================ */
+/* NUEVO ESTILO: Botón de advertencia (Warning) */
+/* ============================================ */
+button.warning {
+    background: #f39c12;
+    color: #1a1a1a;
+}
+
+button.warning:hover {
+    background: #f1b35c;
+}
+
+/* Panel de control del servicio */
+.service-panel {
+    background: #2d2d2d;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #404040;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ff6b6b;
+    transition: background 0.3s;
+}
+
+.status-indicator.active {
+    background: #51cf66;
+}
+
+/* Configuración de notificaciones */
+.notification-config {
+    background: #2d2d2d;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid #404040;
+    width: 100%;
+}
+
+.notification-config select {
+    background: #3d3d3d;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.notification-config select:hover {
+    border-color: #66b0ff;
+}
+
+.notification-config select option {
+    background: #3d3d3d;
+    color: #e0e0e0;
+}
+
+#notifDurationValue {
+    color: #51cf66;
+    font-size: 0.9em;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Tabla de tareas */
+.table-container {
+    background: #2d2d2d;
+    border-radius: 10px;
+    overflow-x: auto;
+    border: 1px solid #404040;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #404040;
+    color: #ffffff;
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #404040;
+}
+
+tr:hover {
+    background: #363636;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.actions button {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+/* Mensajes */
+.message {
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.message.success {
+    background: #2b5e2b;
+    color: #d4edda;
+    border: 1px solid #3e9e3e;
+    display: block;
+}
+
+.message.error {
+    background: #5e2b2b;
+    color: #f8d7da;
+    border: 1px solid #9e3e3e;
+    display: block;
+}
+
+.message.info {
+    background: #2b4d5e;
+    color: #d1ecf1;
+    border: 1px solid #3e8e9e;
+    display: block;
+}
+
+/* Notificaciones estilo dunst */
+#notificationContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.dunst-notification {
+    background: #2d2d2d;
+    border-left: 4px solid #66b0ff;
+    border-radius: 6px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 300px;
+    max-width: 400px;
+    animation: slideIn 0.3s ease;
+    pointer-events: auto;
+    border: 1px solid #404040;
+    color: #e0e0e0;
+    position: relative;
+}
+
+.dunst-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.dunst-content {
+    flex: 1;
+}
+
+.dunst-title {
+    font-weight: bold;
+    color: #66b0ff;
+    margin-bottom: 4px;
+}
+
+.dunst-message {
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.dunst-time {
+    font-size: 12px;
+    color: #888;
+}
+
+.dunst-close {
+    cursor: pointer;
+    color: #888;
+    font-size: 16px;
+    padding: 0 4px;
+}
+
+.dunst-close:hover {
+    color: #ff6b6b;
+}
+
+/* Añadir al final del archivo */
+
+/* Celdas editables */
+td.editable {
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+td.editable:hover {
+    background-color: #404040;
+}
+
+td.editable:hover::after {
+    content: '✎';
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #66b0ff;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+td.editable input {
+    width: 100%;
+    background: #3d3d3d;
+    color: white;
+    border: 2px solid #66b0ff;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+td.editable input:focus {
+    box-shadow: 0 0 5px rgba(102, 176, 255, 0.5);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    th, td {
+        padding: 8px;
+    }
+    
+    .dunst-notification {
+        min-width: 250px;
+    }
+}

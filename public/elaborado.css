@@ -1,0 +1,109 @@
+/* martes 07 octubre 2025 13:07 
+DeepSeek
+Versión alternativa con más personalización visual:
+Si quieres un diseño más elaborado, aquí tienes una versión con estilos personalizados.
+Mejores prácticas implementadas:
+✅ Accesibilidad: Uso de label con for que apunta al id del input
+
+✅ Semántica HTML: Estructura clara y significativa
+
+✅ CSS Flexbox: Layout moderno y responsive
+
+✅ Estados interactivos: Hover, focus y checked states
+
+✅ Responsive design: Se adapta a móviles
+
+✅ Mantenibilidad: Código limpio y organizado
+
+✅ Performance: CSS eficiente sin dependencias externas
+ * */
+
+/* Versión con estilos más personalizados */
+.checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    background: #2a2a35;
+    border: 1px solid #ae10ff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(174, 16, 255, 0.1);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Checkbox personalizado */
+.checkbox-group input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ae10ff;
+    border-radius: 4px;
+    background: #202026;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background: #ae10ff;
+    border-color: #ae10ff;
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-group input[type="checkbox"]:hover {
+    border-color: #8a0ccf;
+    box-shadow: 0 0 8px rgba(174, 16, 255, 0.3);
+}
+
+.checkbox-group label {
+    color: BurlyWood;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.checkbox-group label:hover {
+    color: Chocolate;
+    transform: translateY(-1px);
+}
+
+.checkbox-group input[type="checkbox"]:checked + label {
+    color: DarkKhaki;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 375px) {
+    .checkbox-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .checkbox-group {
+        justify-content: space-between;
+        width: 100%;
+    }
+}
